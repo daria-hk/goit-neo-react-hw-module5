@@ -8,6 +8,12 @@
   background-color: #242424;
 }
 
+.noPhotos {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}
+
 a {
   font-weight: 500;
   color: #646cff;

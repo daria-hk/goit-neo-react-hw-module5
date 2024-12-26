@@ -1,21 +1,21 @@
 import axios from "axios";
 
-const API_KEY = "nmMQbO2J997t5bzDRKDSMh3l1djlqzWLPyO2ggAd9SQ";
+const API_KEY = "2ac2fc2b9b3249e31b0eb40976859874";
 
-axios.defaults.baseURL = "https://api.unsplash.com/";
-
-export const fetchPhotosForGallery = async ({ query, page, per_page }) => {
+export const fetchTrendingMovies = async (page = 1) => {
   try {
-    const res = await axios.get("search/photos", {
-      params: {
-        client_id: API_KEY,
-        query,
-        page,
-        per_page,
-      },
-    });
+    const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&language=en-US&page=${page}`;
+    const res = await axios.get(url);
 
-    return res.data.results;
+    // Map results to include full image URL
+    const movies = res.data.results.map((movie) => ({
+      id: movie.id,
+      title: movie.title,
+      overview: movie.overview,
+      poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`, // Full image URL
+    }));
+
+    return movies;
   } catch (error) {
     console.error("Error in API request:", error);
     throw error;
