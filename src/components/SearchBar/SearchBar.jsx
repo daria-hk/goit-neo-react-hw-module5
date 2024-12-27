@@ -12,7 +12,7 @@ const SearchBar = ({ initialValues, onSubmit }) => {
                 className={css.field}
                 type="text"
                 name="search"
-                placeholder="Search images and photos"
+                placeholder="Search movies"
                 value={values.search}
               />
             </div>

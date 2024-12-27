@@ -1,17 +1,17 @@
 form {
   gap: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   padding: 10px 0;
+  margin-left: 24px;
 }
 
 header {
-  background-color: blueviolet;
   position: sticky;
   width: 100%;
   top: 0;
   padding: 0;
-  margin: 0;
+  margin: 16px 0;
 }
 
 input,
