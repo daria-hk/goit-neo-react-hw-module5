@@ -59,8 +59,7 @@ export default function Movies() {
         setLoading(true);
         setError(false); // to disable error message if this was visible
 
-        const data = await fetchForSearchMovies(query);
-        console.log(data);
+        const data = await fetchForSearchMovies(query, page);
 
         if (data.length > 0) {
           // new search, replace old photos, otherwise, add new phootos.
@@ -104,7 +103,7 @@ export default function Movies() {
           {hasMorePhotos && <LoadMoreBtn handleLoadMore={handleLoadMore} />}
         </>
       ) : (
-        !loading && query && <p className="noPhotos">No photos found!</p>
+        !loading && query && <p className="noMovies">No movies found!</p>
       )}
       {selectedImage && (
         <ImageModal

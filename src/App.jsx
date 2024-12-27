@@ -6,12 +6,6 @@ import Movies from "./pages/Movies";
 import NotFoundPage from "./pages/NotFoundPage";
 import Navigation from "./components/Navigation/Navigation.jsx";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
-import SearchBar from "./components/SearchBar/SearchBar.jsx";
-import Loader from "./components/Loader/Loader.jsx";
-import ErrorMassage from "./components/ErrorMassage/ErrorMassage.jsx";
-import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn.jsx";
-import ImageModal from "./components/ImageModal/ImageModal.jsx";
-import toast, { Toaster } from "react-hot-toast";
 
 export function App() {
   return (
@@ -28,27 +22,3 @@ export function App() {
 }
 
 export default App;
-
-/** <SearchBar initialValues={initialValues} onSubmit={handleSubmit} />
-        <Toaster
-          toastOptions={{
-            duration: 1000,
-          }}
-        />
-        {loading && <Loader />}
-        {error && <ErrorMassage />}
-        {photos.length > 0 ? (
-          <>
-            <MovieList items={photos} onImageClick={openModal} />
-            {hasMorePhotos && <LoadMoreBtn handleLoadMore={handleLoadMore} />}
-          </>
-        ) : (
-          !loading && query && <p className="noPhotos">No photos found!</p>
-        )}
-        {selectedImage && (
-          <ImageModal
-            isOpen={modalIsOpen}
-            imageUrl={selectedImage}
-            onRequestClose={closeModal}
-          />
-        )} */

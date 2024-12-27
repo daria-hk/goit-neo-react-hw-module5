@@ -8,15 +8,7 @@ export const fetchTrendingMovies = async (page = 1) => {
     const url = `${BACE_URL}trending/movie/day?api_key=${API_KEY}&language=en-US&page=${page}`;
     const res = await axios.get(url);
 
-    // Map results to include full image URL
-    const movies = res.data.results.map((movie) => ({
-      id: movie.id,
-      title: movie.title,
-      overview: movie.overview,
-      poster_path: `https://image.tmdb.org/t/p/w500${movie.poster_path}`, // Full image URL
-    }));
-
-    return movies;
+    return res.data.results;
   } catch (error) {
     console.error("Error in API request:", error);
     throw error;
@@ -35,12 +27,12 @@ export const fetchForSearchMovies = async (query, page = 1) => {
   }
 };
 
-export const fetchMovieItem = async (page = 1) => {
+export const getMovieItem = async (id) => {
   try {
-    const url = `${BACE_URL}trending/movie/day?api_key=${API_KEY}&language=en-US&page=${page}`;
+    const url = `${BACE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`;
     const res = await axios.get(url);
 
-    return res;
+    return res.data;
   } catch (error) {
     console.error("Error in API request:", error);
     throw error;

@@ -8,6 +8,14 @@
   background-color: #242424;
 }
 
+.noMovies {
+  margin: 24px;
+  display: flex;
+  justify-content: left;
+  font-size: 20px;
+  color: orange;
+}
+
 a {
   font-weight: 500;
   color: #646cff;

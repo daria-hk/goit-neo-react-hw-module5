@@ -1,4 +1,4 @@
-import ItemCard from "../ItemCard/ItemCard";
+import ItemLink from "../ItemLink/ItemLink";
 import css from "./MovieList.module.css";
 
 const MovieList = ({ items, onImageClick }) => {
@@ -9,7 +9,7 @@ const MovieList = ({ items, onImageClick }) => {
   return (
     <ul className={css.MovieList}>
       {uniqueItems.map(({ id, title, poster_path }) => (
-        <ItemCard key={id} id={id} title={title} poster_path={poster_path} />
+        <ItemLink key={id} id={id} title={title} poster_path={poster_path} />
       ))}
     </ul>
   );

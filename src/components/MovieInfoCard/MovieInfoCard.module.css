@@ -1,0 +1,10 @@
+.movieInfoCard {
+  display: flex;
+  margin: 24px;
+  gap: 24px;
+}
+
+.movieInfoCardDescription {
+  display: flex;
+  flex-direction: column;
+}
