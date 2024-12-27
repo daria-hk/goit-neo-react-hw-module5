@@ -1,6 +1,7 @@
 import css from "./MovieInfoCard.module.css";
 
-const MovieInfoCard = ({ posterPath, title, userScore, overview }) => {
+const MovieInfoCard = ({ posterPath, title, userScore, overview, genres }) => {
+  const genreList = genres?.map((genre) => genre.name).join(", ");
   return (
     <div className={css.movieInfoCard}>
       <img src={posterPath} alt={title} />
@@ -10,6 +11,7 @@ const MovieInfoCard = ({ posterPath, title, userScore, overview }) => {
         <h2>Overview</h2>
         <p>{overview}</p>
         <h3>Genres</h3>
+        <p>{genreList}</p>
       </div>
     </div>
   );
