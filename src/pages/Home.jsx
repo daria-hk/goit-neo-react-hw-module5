@@ -30,13 +30,13 @@ export default function Home() {
   }, [query, page]);
 
   return (
-    <div>
+    <>
       <h1> Trending Today </h1>
       {
         <>
           <MovieList items={items} />
         </>
       }
-    </div>
+    </>
   );
 }

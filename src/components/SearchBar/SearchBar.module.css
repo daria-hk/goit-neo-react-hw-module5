@@ -9,7 +9,7 @@ form {
 header {
   position: sticky;
   width: 100%;
-  top: 0;
+  top: 72px;
   padding: 0;
   margin: 16px 0;
 }

@@ -9,12 +9,12 @@ import ImageModal from "../components/ImageModal/ImageModal.jsx";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function Movies() {
-  const [photos, setPhotos] = useState([]);
+  const [movies, setmovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [hasMorePhotos, setHasMorePhotos] = useState(true);
+  const [hasMoremovies, setHasMoreMovies] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -41,7 +41,7 @@ export default function Movies() {
     if (searchValue.length > 0) {
       setQuery(searchValue);
       setPage(1);
-      setHasMorePhotos(true);
+      setHasMoreMovies(true);
       actions.resetForm();
     }
   };
@@ -54,7 +54,7 @@ export default function Movies() {
     if (!query) return; //if query is empty do not load
     console.log("query", query);
 
-    async function loadPhotos() {
+    async function loadmovies() {
       try {
         setLoading(true);
         setError(false); // to disable error message if this was visible
@@ -62,18 +62,18 @@ export default function Movies() {
         const data = await fetchForSearchMovies(query, page);
 
         if (data.length > 0) {
-          // new search, replace old photos, otherwise, add new phootos.
+          // new search, replace old movies, otherwise, add new phootos.
           if (page === 1) {
-            setPhotos(data);
+            setmovies(data);
           } else {
-            setPhotos((prevPhotos) => [...prevPhotos, ...data]);
+            setmovies((prevmovies) => [...prevmovies, ...data]);
           }
 
           if (data.length < 12) {
-            setHasMorePhotos(false);
+            setHasMoreMovies(false);
           }
         } else {
-          setPhotos([]);
+          setmovies([]);
         }
       } catch (error) {
         setError(true);
@@ -83,12 +83,12 @@ export default function Movies() {
     }
 
     if (query) {
-      loadPhotos();
+      loadmovies();
     }
   }, [query, page]);
 
   return (
-    <div>
+    <>
       <SearchBar initialValues={initialValues} onSubmit={handleSubmit} />
       <Toaster
         toastOptions={{
@@ -97,10 +97,10 @@ export default function Movies() {
       />
       {loading && <Loader />}
       {error && <ErrorMassage />}
-      {photos.length > 0 ? (
+      {movies.length > 0 ? (
         <>
-          <MovieList items={photos} onImageClick={openModal} />
-          {hasMorePhotos && <LoadMoreBtn handleLoadMore={handleLoadMore} />}
+          <MovieList items={movies} onImageClick={openModal} />
+          {hasMoremovies && <LoadMoreBtn handleLoadMore={handleLoadMore} />}
         </>
       ) : (
         !loading && query && <p className="noMovies">No movies found!</p>
@@ -112,6 +112,6 @@ export default function Movies() {
           onRequestClose={closeModal}
         />
       )}
-    </div>
+    </>
   );
 }
