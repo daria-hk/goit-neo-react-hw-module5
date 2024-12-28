@@ -1,36 +1,45 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { fetchTrendingMovies } from "../themoviedb-api.js";
 import MovieList from "../components/MovieList/MovieList.jsx";
+import Loader from "../components/Loader/Loader.jsx";
+import ErrorMassage from "../components/ErrorMassage/ErrorMassage.jsx";
 
 export default function Home() {
   const [items, setItems] = useState([]);
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     async function loadItems() {
+      setLoading(true);
+      setError(false);
+
       try {
         const data = await fetchTrendingMovies();
         setItems(data);
       } catch (error) {
+        setError(true);
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     }
 
     loadItems();
-  }, [query, page]);
-  console.log(location);
+  }, []);
 
   return (
     <>
-      <h1> Trending Today </h1>
-      {
-        <>
-          <MovieList items={items} />
-        </>
-      }
+      <h1>Trending Today</h1>
+      {loading && <Loader />}
+      {error && <ErrorMassage />}
+      {items.length > 0 ? (
+        <MovieList items={items} />
+      ) : (
+        <p>No movies available at the moment.</p>
+      )}
     </>
   );
 }
