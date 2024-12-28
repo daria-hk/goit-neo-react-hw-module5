@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getMovieCredits } from "../../themoviedb-api.js";
 import { useEffect, useState } from "react";
 import css from "./MovieCast.module.css";
@@ -6,6 +6,8 @@ import css from "./MovieCast.module.css";
 const MovieCast = ({ id }) => {
   const [movieInfos, setMovieInfos] = useState([]);
   const [showCast, setShowCast] = useState(false);
+  const location = useLocation();
+  const previousState = location.state || "/";
 
   const handleShowCast = async () => {
     if (!showCast) {
@@ -28,6 +30,7 @@ const MovieCast = ({ id }) => {
         onClick={() => {
           handleShowCast();
         }}
+        state={previousState}
       >
         Cast
       </Link>

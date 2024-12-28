@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { fetchTrendingMovies } from "../themoviedb-api.js";
 import MovieList from "../components/MovieList/MovieList.jsx";
 import Loader from "../components/Loader/Loader.jsx";
@@ -9,7 +8,6 @@ export default function Home() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     async function loadItems() {

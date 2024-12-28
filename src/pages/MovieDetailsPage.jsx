@@ -10,6 +10,7 @@ const MovieDetailsPage = () => {
   const [movieInfos, setmovieInfos] = useState([]);
   const { movieId, title } = useParams();
   const location = useLocation();
+  const previousState = location.state || "/";
 
   useEffect(() => {
     async function loadInfo() {
@@ -29,7 +30,7 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      <Link to={location.state}>
+      <Link to={previousState}>
         <button>Back</button>
       </Link>
       <MovieInfoCard
