@@ -4,6 +4,11 @@
   gap: 24px;
 }
 
+.movieInfoCard img {
+  width: 400px;
+  object-fit: contain;
+}
+
 .movieInfoCardDescription {
   display: flex;
   flex-direction: column;
