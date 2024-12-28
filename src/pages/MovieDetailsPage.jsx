@@ -31,7 +31,7 @@ const MovieDetailsPage = () => {
   return (
     <>
       <Link to={previousState}>
-        <button>Back</button>
+        <button className={css.backButton}>Back</button>
       </Link>
       <MovieInfoCard
         posterPath={posterPath}
@@ -41,7 +41,7 @@ const MovieDetailsPage = () => {
         genres={movieInfos.genres}
       />
       <hr />
-      <p>Additional information</p>
+      <h3 className={css.additionalInfo}>Additional information</h3>
       <div className={css.additionals}>
         <MovieCast id={movieId} />
         <MovieReviews id={movieId} />

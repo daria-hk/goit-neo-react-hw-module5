@@ -2,3 +2,13 @@
   display: flex;
   flex-direction: column;
 }
+
+.additionals a {
+  padding: 8px;
+}
+
+.additionalInfo,
+.additionals,
+.backButton {
+  margin: 0 24px;
+}
