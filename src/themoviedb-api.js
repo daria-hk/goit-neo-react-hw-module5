@@ -27,12 +27,36 @@ export const fetchForSearchMovies = async (query, page = 1) => {
   }
 };
 
-export const getMovieItem = async (id) => {
+export const getMovieDetails = async (id) => {
   try {
     const url = `${BACE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`;
     const res = await axios.get(url);
 
     return res.data;
+  } catch (error) {
+    console.error("Error in API request:", error);
+    throw error;
+  }
+};
+
+export const getMovieCredits = async (id) => {
+  try {
+    const url = `${BACE_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
+    const res = await axios.get(url);
+
+    return res.data.cast;
+  } catch (error) {
+    console.error("Error in API request:", error);
+    throw error;
+  }
+};
+
+export const getMovieReviews = async (id) => {
+  try {
+    const url = `${BACE_URL}movie/${id}/reviews?api_key=${API_KEY}&language=en-US`;
+    const res = await axios.get(url);
+
+    return res.data.results;
   } catch (error) {
     console.error("Error in API request:", error);
     throw error;

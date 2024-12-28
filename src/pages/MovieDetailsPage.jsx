@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getMovieItem } from "../themoviedb-api.js";
+import { getMovieDetails } from "../themoviedb-api.js";
 import { useEffect, useState } from "react";
 import MovieInfoCard from "../components/MovieInfoCard/MovieInfoCard.jsx";
 import MovieCast from "../components/MovieCast/MovieCast.jsx";
@@ -13,8 +13,7 @@ const MovieDetailsPage = () => {
   useEffect(() => {
     async function loadInfo() {
       try {
-        const data = await getMovieItem(movieId);
-        console.log(data);
+        const data = await getMovieDetails(movieId);
         setmovieInfos(data);
       } catch (error) {
         console.error("Error");
@@ -22,7 +21,6 @@ const MovieDetailsPage = () => {
     }
     loadInfo();
   }, [movieId]);
-  console.log("console", movieInfos);
 
   const posterPath = `https://image.tmdb.org/t/p/w500${movieInfos.poster_path}`;
   const userScore = movieInfos.vote_average * 10;

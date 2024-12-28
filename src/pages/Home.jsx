@@ -16,8 +16,6 @@ export default function Home() {
         setError(false);
 
         const data = await fetchTrendingMovies();
-        console.log(data);
-
         setItems(data);
       } catch (error) {
         setError(true);

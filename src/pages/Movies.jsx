@@ -32,7 +32,6 @@ export default function Movies() {
 
   const handleSubmit = (values, actions) => {
     const searchValue = values.search.trim();
-    console.log(values);
 
     if (searchValue.length === 0) {
       toast.error("Please enter a search term!");
@@ -52,7 +51,6 @@ export default function Movies() {
 
   useEffect(() => {
     if (!query) return; //if query is empty do not load
-    console.log("query", query);
 
     async function loadmovies() {
       try {
