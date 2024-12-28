@@ -1,10 +1,17 @@
 import css from "./ItemLink.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-const ItemLink = ({ id, title }) => (
-  <li className={css.ItemLink} key={id}>
-    <Link to={`/movies/${id}`}>{title}</Link>
-  </li>
-);
+const ItemLink = ({ id, title }) => {
+  const location = useLocation();
+  console.log(location.state);
+
+  return (
+    <li className={css.ItemLink} key={id}>
+      <Link to={`/movies/${id}`} state={location}>
+        {title}
+      </Link>
+    </li>
+  );
+};
 
 export default ItemLink;

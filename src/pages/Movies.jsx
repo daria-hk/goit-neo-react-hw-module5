@@ -7,15 +7,18 @@ import ErrorMassage from "../components/ErrorMassage/ErrorMassage.jsx";
 import LoadMoreBtn from "../components/LoadMoreBtn/LoadMoreBtn.jsx";
 import ImageModal from "../components/ImageModal/ImageModal.jsx";
 import toast, { Toaster } from "react-hot-toast";
+import { useSearchParams } from "react-router-dom";
 
 export default function Movies() {
   const [movies, setmovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [hasMoremovies, setHasMoreMovies] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  const searchQuery = searchParams.get("query") ?? "";
+  const [query, setQuery] = useState(searchQuery);
   const initialValues = { search: "" };
 
   const handleSubmit = (values, actions) => {
@@ -26,6 +29,8 @@ export default function Movies() {
       return;
     }
     if (searchValue.length > 0) {
+      searchParams.set("query", searchValue);
+      setSearchParams(searchParams);
       setQuery(searchValue);
       setPage(1);
       setHasMoreMovies(true);

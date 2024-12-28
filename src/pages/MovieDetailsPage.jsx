@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { getMovieDetails } from "../themoviedb-api.js";
 import { useEffect, useState } from "react";
 import MovieInfoCard from "../components/MovieInfoCard/MovieInfoCard.jsx";
@@ -9,6 +9,7 @@ import css from "./pagesCss/MovieDetailsPage.module.css";
 const MovieDetailsPage = () => {
   const [movieInfos, setmovieInfos] = useState([]);
   const { movieId, title } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     async function loadInfo() {
@@ -24,9 +25,13 @@ const MovieDetailsPage = () => {
 
   const posterPath = `https://image.tmdb.org/t/p/w500${movieInfos.poster_path}`;
   const userScore = movieInfos.vote_average * 10;
+  console.log(location);
 
   return (
     <>
+      <Link to={location.state}>
+        <button>Back</button>
+      </Link>
       <MovieInfoCard
         posterPath={posterPath}
         title={movieInfos.title}
