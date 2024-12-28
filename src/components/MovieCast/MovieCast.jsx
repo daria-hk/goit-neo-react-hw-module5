@@ -24,7 +24,7 @@ const MovieCast = ({ id }) => {
   return (
     <>
       <Link
-        to="#"
+        to={`/movies/${id}/cast`}
         onClick={() => {
           handleShowCast();
         }}

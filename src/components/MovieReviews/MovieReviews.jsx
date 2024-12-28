@@ -23,7 +23,7 @@ const MovieReviews = ({ id }) => {
   return (
     <>
       <Link
-        to="#"
+        to={`/movies/${id}/reviews`}
         onClick={() => {
           handleShowReview();
         }}
