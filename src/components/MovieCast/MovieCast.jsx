@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { getMovieCredits } from "../../themoviedb-api.js";
 import { useEffect, useState } from "react";
+import css from "./MovieCast.module.css";
 
 const MovieCast = ({ id }) => {
   const [movieInfos, setMovieInfos] = useState([]);
@@ -38,18 +39,8 @@ const MovieCast = ({ id }) => {
               : "";
 
             return (
-              <li key={item.id}>
-                {posterPath && (
-                  <img
-                    src={posterPath}
-                    alt={`${item.name}'s profile`}
-                    style={{
-                      width: "100px",
-                      height: "125px",
-                      objectFit: "cover",
-                    }}
-                  />
-                )}
+              <li key={item.id} className={css.movieCast}>
+                {posterPath && <img src={posterPath} alt={item.name} />}
                 <div>
                   <strong>{item.name}</strong>
                   <p>Character: {item.character}</p>

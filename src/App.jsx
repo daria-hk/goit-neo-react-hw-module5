@@ -29,5 +29,3 @@ export default App;
 //TODOs:
 //back links
 //links auf Home
-//MovieCast
-//MovieReviews

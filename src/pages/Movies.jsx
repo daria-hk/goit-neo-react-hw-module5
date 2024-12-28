@@ -15,20 +15,8 @@ export default function Movies() {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [hasMoremovies, setHasMoreMovies] = useState(true);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
 
   const initialValues = { search: "" };
-
-  const openModal = (imageUrl) => {
-    setSelectedImage(imageUrl);
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-    setSelectedImage(null);
-  };
 
   const handleSubmit = (values, actions) => {
     const searchValue = values.search.trim();
@@ -97,18 +85,11 @@ export default function Movies() {
       {error && <ErrorMassage />}
       {movies.length > 0 ? (
         <>
-          <MovieList items={movies} onImageClick={openModal} />
+          <MovieList items={movies} />
           {hasMoremovies && <LoadMoreBtn handleLoadMore={handleLoadMore} />}
         </>
       ) : (
         !loading && query && <p className="noMovies">No movies found!</p>
-      )}
-      {selectedImage && (
-        <ImageModal
-          isOpen={modalIsOpen}
-          imageUrl={selectedImage}
-          onRequestClose={closeModal}
-        />
       )}
     </>
   );
