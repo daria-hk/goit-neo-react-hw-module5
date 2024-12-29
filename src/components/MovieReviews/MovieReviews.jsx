@@ -1,55 +1,41 @@
-import { Link, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { getMovieReviews } from "../../themoviedb-api.js";
-import { useEffect, useState, useRef } from "react";
 
-const MovieReviews = ({ id }) => {
-  const [movieInfos, setMovieInfos] = useState([]);
-  const [showReview, setShowReview] = useState(false);
-  const location = useLocation();
-  const previousState = useRef(location.state || "/");
+const MovieReviews = () => {
+  const { movieId } = useParams();
+  const [reviews, setReviews] = useState([]);
 
-  const handleShowReview = async () => {
-    if (!showReview) {
+  useEffect(() => {
+    const fetchReviews = async () => {
       try {
-        const data = await getMovieReviews(id);
-        setMovieInfos(data);
-        setShowReview(true);
+        const data = await getMovieReviews(movieId);
+        setReviews(data || []);
+        console.log(data);
       } catch (error) {
-        console.error(error);
+        console.error("Error");
       }
-    } else {
-      setShowReview(false);
-    }
-  };
+    };
+
+    fetchReviews();
+  }, [movieId]);
 
   return (
-    <>
-      <Link
-        to={`/movies/${id}/reviews`}
-        onClick={() => {
-          handleShowReview();
-        }}
-        state={previousState.current}
-      >
-        Review
-      </Link>
-      {showReview && (
-        <ul>
-          {movieInfos.length > 0 ? (
-            movieInfos.map((item) => {
-              return (
-                <li key={item.id}>
-                  <strong>{item.author}</strong>
-                  <p>{item.content}</p>
-                </li>
-              );
-            })
-          ) : (
-            <p>No reviews found.</p>
-          )}
-        </ul>
-      )}
-    </>
+    <div>
+      <hr />
+      <ul>
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <li key={review.id}>
+              <strong>{review.author}</strong>
+              <p>{review.content}</p>
+            </li>
+          ))
+        ) : (
+          <p>No reviews available.</p>
+        )}
+      </ul>
+    </div>
   );
 };
 

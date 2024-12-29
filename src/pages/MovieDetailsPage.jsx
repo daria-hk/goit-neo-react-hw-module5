@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams, Outlet } from "react-router-dom";
 import { getMovieDetails } from "../themoviedb-api.js";
 import { useEffect, useRef, useState } from "react";
 import MovieInfoCard from "../components/MovieInfoCard/MovieInfoCard.jsx";
@@ -46,8 +46,9 @@ const MovieDetailsPage = () => {
       <hr />
       <h3 className={css.additionalInfo}>Additional information</h3>
       <div className={css.additionals}>
-        <MovieCast id={movieId} />
-        <MovieReviews id={movieId} />
+        <Link to="cast">Cast</Link>
+        <Link to="reviews">Reviews</Link>
+        <Outlet />
       </div>
     </>
   );
