@@ -1,10 +1,10 @@
 import { Link, useLocation, useParams, Outlet } from "react-router-dom";
-import { getMovieDetails } from "../themoviedb-api.js";
+import { getMovieDetails } from "../../themoviedb-api.js";
 import { useEffect, useRef, useState } from "react";
-import MovieInfoCard from "../components/MovieInfoCard/MovieInfoCard.jsx";
-import MovieCast from "../components/MovieCast/MovieCast.jsx";
-import MovieReviews from "../components/MovieReviews/MovieReviews.jsx";
-import css from "./pagesCss/MovieDetailsPage.module.css";
+import MovieInfoCard from "../../components/MovieInfoCard/MovieInfoCard.jsx";
+import MovieCast from "../../components/MovieCast/MovieCast.jsx";
+import MovieReviews from "../../components/MovieReviews/MovieReviews.jsx";
+import css from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const [movieInfos, setmovieInfos] = useState([]);
