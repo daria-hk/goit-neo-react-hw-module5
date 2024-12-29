@@ -50,6 +50,7 @@ const MovieDetailsPage = () => {
         <Link to="reviews">Reviews</Link>
         <Outlet />
       </div>
+      <hr />
     </>
   );
 };
