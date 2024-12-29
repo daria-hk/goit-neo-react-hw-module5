@@ -1,13 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { getMovieCredits } from "../../themoviedb-api.js";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import css from "./MovieCast.module.css";
 
 const MovieCast = ({ id }) => {
   const [movieInfos, setMovieInfos] = useState([]);
   const [showCast, setShowCast] = useState(false);
   const location = useLocation();
-  const previousState = location.state || "/";
+  const previousState = useRef(location.state || "/");
 
   const handleShowCast = async () => {
     if (!showCast) {
@@ -23,6 +23,9 @@ const MovieCast = ({ id }) => {
     }
   };
 
+  const defaultImg =
+    "https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg";
+
   return (
     <>
       <Link
@@ -30,7 +33,7 @@ const MovieCast = ({ id }) => {
         onClick={() => {
           handleShowCast();
         }}
-        state={previousState}
+        state={previousState.current}
       >
         Cast
       </Link>
@@ -39,7 +42,7 @@ const MovieCast = ({ id }) => {
           {movieInfos.map((item) => {
             const posterPath = item.profile_path
               ? `https://image.tmdb.org/t/p/w500${item.profile_path}`
-              : "";
+              : defaultImg;
 
             return (
               <li key={item.id} className={css.movieCast}>

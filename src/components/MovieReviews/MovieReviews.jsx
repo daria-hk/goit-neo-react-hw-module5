@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { getMovieReviews } from "../../themoviedb-api.js";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const MovieReviews = ({ id }) => {
   const [movieInfos, setMovieInfos] = useState([]);
   const [showReview, setShowReview] = useState(false);
   const location = useLocation();
-  const previousState = location.state || "/";
+  const previousState = useRef(location.state || "/");
 
   const handleShowReview = async () => {
     if (!showReview) {
@@ -29,7 +29,7 @@ const MovieReviews = ({ id }) => {
         onClick={() => {
           handleShowReview();
         }}
-        state={previousState}
+        state={previousState.current}
       >
         Review
       </Link>

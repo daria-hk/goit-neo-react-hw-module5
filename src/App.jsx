@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation.jsx";
 import Loader from "./components/Loader/Loader.jsx";
 
-const Home = lazy(() => import("./pages/Home"));
-const Movies = lazy(() => import("./pages/Movies"));
+const Home = lazy(() => import("./pages/HomePage.jsx"));
+const Movies = lazy(() => import("./pages/MoviesPage.jsx"));
 const MovieDetailsPage = lazy(() => import("./pages/MovieDetailsPage"));
 const MovieCast = lazy(() => import("./components/MovieCast/MovieCast.jsx"));
 const MovieReviews = lazy(() =>
