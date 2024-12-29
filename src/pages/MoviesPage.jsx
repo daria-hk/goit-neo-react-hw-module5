@@ -5,7 +5,6 @@ import SearchBar from "../components/SearchBar/SearchBar.jsx";
 import Loader from "../components/Loader/Loader.jsx";
 import ErrorMassage from "../components/ErrorMassage/ErrorMassage.jsx";
 import LoadMoreBtn from "../components/LoadMoreBtn/LoadMoreBtn.jsx";
-import ImageModal from "../components/ImageModal/ImageModal.jsx";
 import toast, { Toaster } from "react-hot-toast";
 import { useSearchParams } from "react-router-dom";
 
